@@ -1,0 +1,29 @@
+.input-form {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+.input-form-modes {
+  margin-bottom: 16px;
+}
+.input-form-radio {
+  margin-right: 8px;
+}
+.input-form-radio-label {
+  margin-left: 24px;
+}
+.input-form-url {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+}
+.input-form-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 8px;
+  font-size: 16px;
+}
+.input-form-btn {
+  margin-top: 16px;
+  padding: 8px 24px;
+  font-size: 16px;
+}

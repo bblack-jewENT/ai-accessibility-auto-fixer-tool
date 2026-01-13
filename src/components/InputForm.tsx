@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./InputForm.css";
 
 interface InputFormProps {
   onScan: (type: "url" | "code", value: string) => void;
@@ -16,8 +17,8 @@ const InputForm: React.FC<InputFormProps> = ({ onScan, loading }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginTop: 32, marginBottom: 32 }}>
-      <div style={{ marginBottom: 16 }}>
+    <form onSubmit={handleSubmit} className="input-form">
+      <div className="input-form-modes">
         <label>
           <input
             type="radio"
@@ -25,18 +26,18 @@ const InputForm: React.FC<InputFormProps> = ({ onScan, loading }) => {
             value="url"
             checked={mode === "url"}
             onChange={() => setMode("url")}
-            style={{ marginRight: 8 }}
+            className="input-form-radio"
           />
           Scan URL
         </label>
-        <label style={{ marginLeft: 24 }}>
+        <label className="input-form-radio-label">
           <input
             type="radio"
             name="mode"
             value="code"
             checked={mode === "code"}
             onChange={() => setMode("code")}
-            style={{ marginRight: 8 }}
+            className="input-form-radio"
           />
           Paste Code
         </label>
@@ -47,7 +48,7 @@ const InputForm: React.FC<InputFormProps> = ({ onScan, loading }) => {
           placeholder="Enter public website URL (https://...)"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          style={{ width: "100%", padding: 8, fontSize: 16 }}
+          className="input-form-url"
           required
         />
       ) : (
@@ -55,15 +56,11 @@ const InputForm: React.FC<InputFormProps> = ({ onScan, loading }) => {
           placeholder="Paste your HTML/CSS/JS code here"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          style={{ width: "100%", minHeight: 120, padding: 8, fontSize: 16 }}
+          className="input-form-textarea"
           required
         />
       )}
-      <button
-        type="submit"
-        disabled={loading}
-        style={{ marginTop: 16, padding: "8px 24px", fontSize: 16 }}
-      >
+      <button type="submit" disabled={loading} className="input-form-btn">
         {loading ? "Scanning..." : "Scan & Fix"}
       </button>
     </form>

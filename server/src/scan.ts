@@ -1,17 +1,14 @@
 import { Request, Response } from "express";
 import { JSDOM } from "jsdom";
 import axe from "axe-core";
-import fetch from "node-fetch";
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 
 type ScanRequest = {
   type: "url" | "code";
   value: string;
 };
 
-const openai = new OpenAIApi(
-  new Configuration({ apiKey: process.env.OPENAI_API_KEY })
-);
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 async function runAxe(html: string) {
   const dom = new JSDOM(html);
@@ -50,7 +47,7 @@ async function getAIFixes(violations: any[], html: string) {
     null,
     2
   )}, and this original HTML: '''${html}''', suggest precise, minimal fixes to resolve them. Output only valid JSON: { fixedHtml: string, changes: array of { selector: string, issue: string, fix: string } }`;
-  const completion = await openai.createChatCompletion({
+  const completion = await openai.chat.completions.create({
     model: "gpt-4o",
     messages: [
       { role: "system", content: "You are a senior accessibility engineer." },
@@ -60,7 +57,7 @@ async function getAIFixes(violations: any[], html: string) {
     max_tokens: 2048,
     temperature: 0.2,
   });
-  const content = completion.data.choices[0].message?.content || "{}";
+  const content = completion.choices[0]?.message?.content || "{}";
   try {
     return JSON.parse(content);
   } catch {

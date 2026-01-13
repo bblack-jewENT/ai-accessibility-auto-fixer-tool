@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InputForm from "./components/InputForm";
 import ViolationList, { Violation } from "./components/ViolationList";
 import CodeDiffViewer from "./components/CodeDiffViewer";
+import "./App.css";
 
 export interface FixResult {
   explanation: string;
@@ -45,7 +46,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
+    <div className="app-container">
       <h1>AI Accessibility Auto-Fixer Tool</h1>
       <p>
         Scan a public website or paste your code to find and fix accessibility
@@ -55,7 +56,7 @@ const App: React.FC = () => {
       {error && <div style={{ color: "red", marginTop: 16 }}>{error}</div>}
       {violations.length > 0 && <ViolationList violations={violations} />}
       {fixResult && (
-        <div style={{ marginTop: 32 }}>
+        <div className="app-fix-section">
           <h2>AI Fix Suggestions</h2>
           <p>{fixResult.explanation}</p>
           <CodeDiffViewer original={originalHtml} fixed={fixResult.fixedHtml} />

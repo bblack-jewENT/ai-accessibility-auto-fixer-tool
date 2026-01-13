@@ -1,0 +1,23 @@
+.code-diff-viewer {
+  margin-top: 24px;
+}
+.code-diff-editor {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.code-diff-actions {
+  margin-top: 12px;
+}
+.code-diff-copy-btn {
+  margin-right: 16px;
+  padding: 6px 18px;
+  font-size: 15px;
+}
+.code-diff-download-link {
+  padding: 6px 18px;
+  font-size: 15px;
+  text-decoration: none;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}

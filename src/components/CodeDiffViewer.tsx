@@ -1,5 +1,6 @@
 import React from "react";
 import MonacoDiffEditor from "@monaco-editor/react";
+import "./CodeDiffViewer.css";
 
 interface CodeDiffViewerProps {
   original: string;
@@ -8,15 +9,9 @@ interface CodeDiffViewerProps {
 
 const CodeDiffViewer: React.FC<CodeDiffViewerProps> = ({ original, fixed }) => {
   return (
-    <div style={{ marginTop: 24 }}>
+    <div className="code-diff-viewer">
       <h3>Code Diff (Original vs Fixed)</h3>
-      <div
-        style={{
-          border: "1px solid #ddd",
-          borderRadius: 6,
-          overflow: "hidden",
-        }}
-      >
+      <div className="code-diff-editor">
         <MonacoDiffEditor
           height="400px"
           language="html"
@@ -24,32 +19,25 @@ const CodeDiffViewer: React.FC<CodeDiffViewerProps> = ({ original, fixed }) => {
           modified={fixed}
           options={{
             readOnly: true,
-            renderSideBySide: true,
             minimap: { enabled: false },
             fontSize: 14,
             scrollBeyondLastLine: false,
           }}
         />
       </div>
-      <div style={{ marginTop: 12 }}>
+      <div className="code-diff-actions">
         <button
           onClick={() => {
             navigator.clipboard.writeText(fixed);
           }}
-          style={{ marginRight: 16, padding: "6px 18px", fontSize: 15 }}
+          className="code-diff-copy-btn"
         >
           Copy Fixed Code
         </button>
         <a
           href={`data:text/html;charset=utf-8,${encodeURIComponent(fixed)}`}
           download="fixed.html"
-          style={{
-            padding: "6px 18px",
-            fontSize: 15,
-            textDecoration: "none",
-            border: "1px solid #aaa",
-            borderRadius: 4,
-          }}
+          className="code-diff-download-link"
         >
           Download Fixed HTML
         </a>

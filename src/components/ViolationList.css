@@ -1,0 +1,36 @@
+.violation-list {
+  margin-top: 32px;
+}
+.violation-list-ul {
+  padding-left: 0;
+  list-style: none;
+}
+.violation-list-item {
+  margin-bottom: 24px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 16px;
+}
+.violation-impact-critical {
+  color: red;
+}
+.violation-impact-serious {
+  color: orange;
+}
+.violation-impact-moderate {
+  color: #555;
+}
+.violation-impact-minor {
+  color: #555;
+}
+.violation-nodes-ul {
+  margin-top: 4px;
+}
+.violation-node-item {
+  font-family: monospace;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+.violation-failure-summary {
+  color: #888;
+}
